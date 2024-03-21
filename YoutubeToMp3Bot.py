@@ -2,6 +2,12 @@ import telebot
 from telebot import types
 from pytube import YouTube, Playlist
 import os
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from pytube import YouTube
+
 
 API_Key = "6594313189:AAEiLNF212n6pDf7qOzaQ5eLHNemHhILLeM"
 
@@ -43,6 +49,10 @@ def echo_all(message):
 def handle_song_choice(message):
     url = message.text
     try:
+        yt = YouTube(url)
+
+        video_stream = yt.streams.first()
+        file_path = video_stream.download(output_path='./videos')
         file_path = download_song(url)
         bot.send_audio(message.chat.id, audio=open(file_path, 'rb'))
         os.remove(file_path)  # Remove the downloaded file after sending
