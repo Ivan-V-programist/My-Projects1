@@ -3,7 +3,7 @@ from telebot import types
 from pytube import YouTube, Playlist
 import os
 
-API_Key = "6594313189:AAEiLNF212n6pDf7qOzaQ5eLHNemHhILLeM"
+API_Key = ""
 
 bot = telebot.TeleBot(API_Key)
 
